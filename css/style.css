@@ -1,0 +1,73 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper {
+    margin: 0 auto;
+    border-radius: 5px;
+    padding-bottom: 5px;
+    -webkit-box-shadow: 0 3px 20px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 3px 20px 2px rgba(0,0,0,0.75);
+    box-shadow: 0 3px 20px 2px rgba(0,0,0,0.75);
+    background: url(http://eskipaper.com/images/green-wallpaper-18.jpg) top center fixed no-repeat;    /* image */
+
+}
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.flex-item {
+    background: rgba(255, 99, 71, 0.75);
+    width: 96px;
+    height: 96px;
+    margin-top: 6px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.flex-item img {
+    visibility: hidden;
+    border-radius: 5px;
+}
+
+h1, h2{
+    margin: 0;
+    padding: 20px 0; 
+    text-align: center;
+}
+h2 {
+    color: #ffffff;
+}
+
+.score-wrapper {
+    color:#07889B;
+    font-size: 1em;
+    font-weight: 15px;
+    margin: 20px 20%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn button {
+    display: block;
+    margin: 30px auto;
+    width: 100px;
+    color: #fff;
+    background-color: #2297FB;
+    border-radius: 5px;
+    border: none;
+    line-height: 3em;
+}
+.btn button:hover {
+    background-color: #0075DA;
+    cursor: pointer;
+}
