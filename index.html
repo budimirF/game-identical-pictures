@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <title>Game - identical pictures</title>
 </head>
+
 <body>
     <header>
         <h1>Найди две одинаковые картинки!</h1>
@@ -13,11 +15,25 @@
             <div class="score">Счет: <span></span></div>
             <div class="time">Время: <span>0</span></div>
         </div>
-
     </header>
-    <div class="wrapper"></div>
-    <footer class="btn"><button type="button">Сначала</button></footer>
-
-<script src="js/app.js"></script>
+    <div class="wrapper">
+        <div class="overlay-loader">
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!--loader-->
+    </div>
+    <footer class="btn">
+        <button type="button">Сначала</button>
+    </footer>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
+
 </html>

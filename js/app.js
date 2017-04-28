@@ -17,7 +17,8 @@ let runGame = (function() {
             wrapper: document.querySelector('.wrapper'),
             btnAgain: document.querySelector('footer button'),
             score: document.querySelector('.score span'),
-            timer: document.querySelector('.time span')
+            timer: document.querySelector('.time span'),
+            loader: document.querySelector('.overlay-loader')
         };
 
     function genGameArr({ width, height }) {
@@ -161,6 +162,7 @@ let runGame = (function() {
         card1 = '';
         card2 = '';
         score = 999;
+        DOMElements.loader.style.display = 'block';
         makeRequest ('GET', requestUrl)
         .then(function (res) {
             res = JSON.parse(res);
@@ -168,6 +170,7 @@ let runGame = (function() {
             showField(res);
             countScore();
             initListeners();
+            DOMElements.loader.style.display = 'none';
         })
         .catch(function (err) {
             console.error('Error!', err.statusText);
