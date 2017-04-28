@@ -5,19 +5,20 @@
 'use strict';
 let runGame = (function() {
     let pathImg = 'https://kde.link/test/',
-    img = ['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png'],
-    widthItem = 105,
-    gameArr = [],
-    card1 = '',
-    card2 = '',
-    score,
-    timer,
-    DOMElements = {
-        wrapper: document.querySelector('.wrapper'),
-        btnAgain: document.querySelector('footer button'),
-        score: document.querySelector('.score span'),
-        timer: document.querySelector('.time span')
-    };
+        requestUrl = 'https://kde.link/test/get_field_size.php',
+        img = ['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png'],
+        widthItem = 105,
+        gameArr = [],
+        card1 = '',
+        card2 = '',
+        score,
+        timer,
+        DOMElements = {
+            wrapper: document.querySelector('.wrapper'),
+            btnAgain: document.querySelector('footer button'),
+            score: document.querySelector('.score span'),
+            timer: document.querySelector('.time span')
+        };
 
     function genGameArr({ width, height }) {
         let quantity = width * height / 2;
@@ -131,22 +132,46 @@ let runGame = (function() {
         DOMElements.btnAgain.addEventListener('click', run);
     }
 
-    function run() {
+    function makeRequest (method, url) {
+      return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
-        let obj = {};
+        xhr.open(method, url);
+        xhr.onload = function () {
+          if (this.status >= 200 && this.status < 300) {
+            resolve(xhr.response);
+          } else {
+            reject({
+              status: this.status,
+              statusText: xhr.statusText
+            });
+          }
+        };
+        xhr.onerror = function () {
+          reject({
+            status: this.status,
+            statusText: xhr.statusText
+          });
+        };
+        xhr.send();
+      });
+    }
+
+    function run () {
         gameArr = [];
         card1 = '';
         card2 = '';
         score = 999;
-        xhr.open("GET", "https://kde.link/test/get_field_size.php", true);
-        xhr.onload = function() {
-            obj = JSON.parse(xhr.responseText);
-            genGameArr(obj);
-            showField(obj);
+        makeRequest ('GET', requestUrl)
+        .then(function (res) {
+            res = JSON.parse(res);
+            genGameArr(res);
+            showField(res);
             countScore();
             initListeners();
-        };
-        xhr.send(null);
+        })
+        .catch(function (err) {
+            console.error('Error!', err.statusText);
+        })
     }
 
 
